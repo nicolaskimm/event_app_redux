@@ -1,0 +1,7 @@
+const PREVIOUS_SLIDE = 'PREVIOUS_SLIDE';
+const NEXT_SLIDE = 'NEXT_SLIDE';
+
+export default {
+    PREVIOUS_SLIDE,
+    NEXT_SLIDE
+}
