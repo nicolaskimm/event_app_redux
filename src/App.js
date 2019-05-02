@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { Link, BrowserRouter as Switch, Route } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import EventsList from './components/EventsList/EventsList';
+import About from './components/About/About';
 import './components/Navigation/Navigation.css';
 
 const styles = {
@@ -34,6 +35,7 @@ const App = ({ store }) => (
         </nav>
         <Route exact path="/" component={MainPage} />
         <Route path="/wydarzenia" component={EventsList} />
+        <Route path="/about" component={About} />
       </div>
     </Switch>
   </Provider>

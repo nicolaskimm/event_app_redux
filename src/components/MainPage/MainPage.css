@@ -36,16 +36,20 @@
 }
 
 .mainPage .mainPage_carousel .image-slide {
-  height: 300px;
-  width: 200px;
+  height: 250px;
+  width: 300px;
   margin: 0 2em;
   border-radius: 20px;
 }
 
 .mainPage .mainPage_carousel .activeSlide {
-  width: 300px;
-  height: 400px;
+  height: 350px;
+  width: 400px;
   border-radius: 20px;
+}
+
+.mainPage .mainPage_carousel .promotedText {
+  width: 400px;
 }
 
 .mainPage .mainPage_carousel .arrow {

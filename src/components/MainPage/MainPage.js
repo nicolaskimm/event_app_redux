@@ -1,4 +1,6 @@
 import React from 'react';
+import Carousel from '../Carousel/Carousel';
+
 import './MainPage.css';
 
 const MainPage = (props) => {
@@ -6,7 +8,7 @@ const MainPage = (props) => {
         <div className='mainPage'>
             <h1 className='mainPage_title'> iventi. </h1>
             <div className='mainPage_carousel'>
-                <p> tutaj karuzela </p>
+                <Carousel />
             </div>                
         </div>
     )

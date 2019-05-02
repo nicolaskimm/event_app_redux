@@ -10,34 +10,43 @@ library.add(faArrowLeft, faArrowRight);
 
 
 
-const Carousel = (props) => {
-	
+const Carousel = ({ currentImageIndex, promotedEvents, moveSlide, promotedUrls }) => {
+
+    const lastIndex = promotedEvents.length - 1;
+    const shouldResetIndexForPrevious = currentImageIndex === 0;
+    const shouldResetIndexForNext = currentImageIndex === lastIndex;
+
+    const indexPrevious =  shouldResetIndexForPrevious ? lastIndex : currentImageIndex - 1;
+    const indexNext = shouldResetIndexForNext ? 0 : currentImageIndex + 1;
+    
+    const promotedUrlNext = promotedUrls[currentImageIndex + 1] ? promotedUrls[currentImageIndex + 1] : promotedUrls[0];
+    const promotedUrlPrevious = promotedUrls[currentImageIndex - 1] ? promotedUrls[currentImageIndex - 1] : promotedUrls[lastIndex];
+
+    console.log(indexPrevious, currentImageIndex, indexNext);
+
 	return (
 		<div className="carousel">
-            <FontAwesomeIcon icon={faArrowLeft} className='arrow carousel-arrow-left' onClick={ props.previousSlide }/>
-                {props.promotedEvents.map((item, index) => (  
-                    <ImageSlide    
-                        key = {index}
-                        index = {index}
-                        url = {item.imgUrl}
-                        organisator = {item.organisator}
-                        city = {item.city}
-                        place = {item.place}
-                        street = {item.street}
-                    />
-                ))}
-            <FontAwesomeIcon icon={faArrowRight} className='arrow carousel-arrow-right' onClick={ props.nextSlide }/>
-			
+            <FontAwesomeIcon icon={faArrowLeft} className='arrow carousel-arrow-left' onClick={() => moveSlide(indexPrevious)}/>
+                <ImageSlide url={promotedUrlPrevious}/>
+                <ImageSlide 
+                    url={ promotedUrls[currentImageIndex] } 
+				    index={currentImageIndex} 
+				    promotedEventInfo = {promotedEvents[currentImageIndex]}
+                />
+                <ImageSlide url={promotedUrlNext}/>
+            <FontAwesomeIcon icon={faArrowRight} className='arrow carousel-arrow-right' onClick={() => moveSlide(indexNext)}/>	
 		</div>
 	);
 }
 
 const mapStateToProps = state => ({
-    promotedEvents: state.promotedEvents.promotedEventsList
+    promotedEvents: state.promotedEvents.promotedEventsList,
+    currentImageIndex: state.promotedEvents.currentImageIndex,
+    promotedUrls: state.promotedEvents.promotedUrls
 })
 
 const mapDispatchToProps = dispatch => ({
-    previousSlide: () => dispatch(actions.previousSlide())
+    moveSlide: (index) => dispatch(actions.moveSlide(index))
 })
 
 
