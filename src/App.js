@@ -4,7 +4,7 @@ import { Link, BrowserRouter as Switch, Route } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import EventsList from './components/EventsList/EventsList';
 import About from './components/About/About';
-import './components/Navigation/Navigation.css';
+import './components/Navigation/styles/Navigation.css';
 
 const styles = {
   display: 'flex',

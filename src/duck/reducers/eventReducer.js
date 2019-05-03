@@ -64,6 +64,7 @@ const INITIAL_STATE = {
           category: 'sztuka',
         }
     ],
+    openDialog: false
 }
 
 const eventsReducer = (state = INITIAL_STATE, action) => {
@@ -77,7 +78,22 @@ const eventsReducer = (state = INITIAL_STATE, action) => {
       case types.ADD_EVENT: {
         return {
           ...state, 
-          eventsList: [...state.eventsList, action.payload]
+          eventsList: [...state.eventsList, action.payload],
+          openDialog: false
+        }
+      }
+
+      case types.CLOSE_DIALOG: {
+        return {
+          ...state, 
+          openDialog: false
+        }
+      }
+
+      case types.OPEN_DIALOG: {
+        return {
+          ...state, 
+          openDialog: true
         }
       }
       

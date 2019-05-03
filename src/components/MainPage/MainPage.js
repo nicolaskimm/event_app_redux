@@ -1,7 +1,6 @@
 import React from 'react';
 import Carousel from '../Carousel/Carousel';
-
-import './MainPage.css';
+import './styles/MainPage.css';
 
 const MainPage = (props) => {
     return (
