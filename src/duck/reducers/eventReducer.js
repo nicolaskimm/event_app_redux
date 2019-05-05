@@ -11,60 +11,61 @@ const INITIAL_STATE = {
           place: 'Torwar',
           city: 'Warszawa',
           street: 'ul. Łazienkowska 6a',
-          startDate: '1 czerwca 2018',
-          endDate: '2 czerwca 2018',
+          startDate: '1.06.2018',
+          endDate: '2.06.2018',
           category: 'muzyka',
         },
         {
-          id: 2,
+          id: uuidv5(),
           imgUrl: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
           organisator: 'Red Hot Chilli Peppers',
           description: 'xyz',
           place: 'Klub Harenda',
           city: 'Warszawa',
           street: 'ul. Krakowskie Przedmieście 4',
-          startDate: '1 czerwca 2018',
-          endDate: '2 czerwca 2018',
+          startDate: '1.06.2018',
+          endDate: '2.06.2018',
           category: 'muzyka',
         },
         {
-          id: 3,
+          id: uuidv5(),
           imgUrl: 'https://images.pexels.com/photos/1736222/pexels-photo-1736222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
           organisator: 'Mirosław Bałka',
           description: 'xyz',
           place: 'MOCAK',
           city: 'Kraków',
           street: 'ul. Lipowa 4',
-          startDate: '1 czerwca 2018',
-          endDate: '2 czerwca 2018',
+          startDate: '1.06.2018',
+          endDate: '2.06.2018',
           category: 'sztuka',
         },
         {
-          id: 4,
+          id: uuidv5(),
           imgUrl: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
           organisator: 'Red Hot Chilli Peppers',
           description: 'xyz',
           place: 'Klub Harenda',
           city: 'Warszawa',
           street: 'ul. Krakowskie Przedmieście 4',
-          startDate: '1 czerwca 2018',
-          endDate: '2 czerwca 2018',
+          startDate: '1.06.2018',
+          endDate: '2.06.2018',
           category: 'muzyka',
         },
         {
-          id: 5,
+          id: uuidv5(),
           imgUrl: 'https://images.pexels.com/photos/1736222/pexels-photo-1736222.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
           organisator: 'Mirosław Bałka',
           description: 'xyz',
           place: 'MOCAK',
           city: 'Kraków',
           street: 'ul. Lipowa 4',
-          startDate: '1 czerwca 2018',
-          endDate: '2 czerwca 2018',
+          startDate: '1.06.2018',
+          endDate: '2.06.2018',
           category: 'sztuka',
         }
     ],
-    openDialog: false
+    openDialog: false,
+    clickedEvent: '',
 }
 
 const eventsReducer = (state = INITIAL_STATE, action) => {
@@ -94,6 +95,13 @@ const eventsReducer = (state = INITIAL_STATE, action) => {
         return {
           ...state, 
           openDialog: true
+        }
+      }
+
+      case types.OPEN_SINGLE_EVENT: {
+        return {
+          ...state, 
+          clickedEvent: action.payload
         }
       }
       

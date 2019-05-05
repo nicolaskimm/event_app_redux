@@ -16,6 +16,7 @@ const EventsList = (props) => {
                     <SingleEvent
                         key = {index}
                         id = {item.id}
+                        url = {item.imgUrl}
                         organisator = {item.organisator}
                         description = {item.description}
                         place = {item.place}

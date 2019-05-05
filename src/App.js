@@ -1,10 +1,11 @@
 import React from 'react';
-import { Provider } from 'react-redux';
+import { Provider, connect } from 'react-redux';
 import { Link, BrowserRouter as Switch, Route } from 'react-router-dom';
 import MainPage from './components/MainPage/MainPage';
 import EventsList from './components/EventsList/EventsList';
 import About from './components/About/About';
 import './components/Navigation/styles/Navigation.css';
+import ClickedEvent from './components/ClickedEvent/ClickedEvent';
 
 const styles = {
   display: 'flex',
@@ -13,7 +14,7 @@ const styles = {
   alignItems: 'center'
 }
 
-const App = ({ store }) => (
+const App = ({ store, clickedEvent }) => (
   <Provider store={store}>
     <Switch>
       <div style={styles}>
@@ -36,9 +37,14 @@ const App = ({ store }) => (
         <Route exact path="/" component={MainPage} />
         <Route path="/wydarzenia" component={EventsList} />
         <Route path="/about" component={About} />
+        <Route path={`/events/${clickedEvent}`} component={ClickedEvent} />
       </div>
     </Switch>
   </Provider>
 )
 
-export default App;
+const mapStateToProps = state => ({
+  clickedEvent: state.events.clickedEvent
+})
+
+export default connect(mapStateToProps, null)(App);

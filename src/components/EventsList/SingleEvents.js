@@ -1,23 +1,43 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles/SingleEvent.css';
 
+import { connect } from 'react-redux';
+import actions from '../../duck/actions/eventActions';
+
+
 const SingleEvent = (props) => {
+    const { id, organisator, city, place, street, category, openSingleEvent, url} = props;
+
+    const styles = {
+        backgroundImage: `url(${url})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center'
+    };
 
     return (
-       <li id={props.id} className='single_event'>
-        <img src='https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500' className='single_event-photo' alt='event'/>
-        <h2>{props.organisator}</h2>
-        <p>{props.place}</p>
-        <p> {props.city}, {props.street}</p>
-        <p>#{props.category}</p>
+       <li id={id} className='single_event'>
+        <div className='single_event-photo' style={styles}></div>
+        <h2>{organisator}</h2>
+        <p>{place}</p>
+        <p> {city}, {street}</p>
+        <p>#{category}</p>
         <div className='single_event_bottom'>
             <div className='single_event_bottom-buttons'>
-                <button className='single_event_bottom-buttons-delete' onClick={props.handleDelete}>x</button>
-                <button className='single_event_bottom-buttons-edit'onClick={props.editElement}>edit</button>
+                <Link to={`/events/${id}`} className='single_event_bottom-link' onClick={() => openSingleEvent(id)}>learn more </Link>
             </div>
         </div>
        </li>
     )
 }
 
-export default SingleEvent;
+
+const mapStateToProps = state => ({
+    clickedEvent: state.events.clickedEvent
+})
+
+const mapDispatchToProps = dispatch => ({
+    openSingleEvent: (id) => dispatch(actions.openSingleEvent(id)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SingleEvent)

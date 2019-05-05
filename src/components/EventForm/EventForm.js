@@ -1,18 +1,18 @@
 import React from 'react';
 import actions from '../../duck/actions/eventActions';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
-import './styles/EventForm.css';
+import './style/EventForm.css';
 
+import { Formik } from 'formik';
+
+import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
+import DialogActions from '@material-ui/core/DialogActions';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-
-let EventForm = ({ handleSubmit, add, openDialog, closeDialog, isOpen }) => {
-    console.log(isOpen)
-
+let EventForm = ({ add, openDialog, closeDialog, isOpen }) => {
    
     const submit = (values) => {
         const newEvent = {
@@ -28,54 +28,81 @@ let EventForm = ({ handleSubmit, add, openDialog, closeDialog, isOpen }) => {
 
     return (
         <div>
-            <Button variant="outlined" color="primary" onClick={openDialog}> add event </Button>
+            <Button className='button-dialog' color='primary' variant="outlined" onClick={openDialog}>
+                add new event
+            </Button>
             <Dialog
-                aria-labelledby="new-event-form-dialog"
                 open={isOpen}
                 onClose={closeDialog}
+                aria-labelledby="new-event-form-dialog"
             >
-            <DialogTitle id="new-event-form-dialog"> add new event </DialogTitle>
-            <DialogContent>
-                <form onSubmit={handleSubmit(submit)} className='eventFormAdd'>
-                    <div>
-                        <label htmlFor='city'>City</label>
-                            <Field 
-                                name='organisator' 
-                                component='input' 
-                                type='text' 
-                                placeholder='organisator'
-                            />
-                            <label htmlFor='name'>Name</label>
-                            <Field 
-                                name='city' 
-                                component='input' 
-                                type='text' 
-                                placeholder='city'
-                            />
-                            <Field 
-                                name='street' 
-                                component='input' 
-                                type='text' 
-                                placeholder='street'
-                            />
-                            <Field 
-                                name='place' 
-                                component='input' 
-                                type='text' 
-                                placeholder='place'
-                            />
-                            <Field 
-                                name='category' 
-                                component='input' 
-                                type='text' 
-                                placeholder='category'
-                            />
-                    </div>
-                    <Button color="primary" onClick={closeDialog}> cancel </Button>
-                    <Button color="primary" type='submit'> add </Button>
-                </form>
-            </DialogContent>
+                <DialogTitle id="new-event-form-dialog">add new event</DialogTitle>
+                <DialogContent>
+                    <Formik
+                        initialValues={{ city: '', color: 'red' }}
+                        onSubmit={(values) => {
+                            submit(values)
+                        }}
+                        render={props => (
+                            <form onSubmit={props.handleSubmit}>
+                                <TextField
+                                    type="text"
+                                    onChange={props.handleChange}
+                                    value={props.values.organisator}
+                                    name='organisator'
+                                    label='Organisator'
+                                    halfWidth
+                                />
+                                <br />
+                                <TextField
+                                    type="text"
+                                    onChange={props.handleChange}
+                                    value={props.values.place}
+                                    name='place'
+                                    label='Place'
+                                    halfWidth
+                                />
+                                <br />
+                                <TextField
+                                    type="text"
+                                    onChange={props.handleChange}
+                                    value={props.values.city}
+                                    name='city'
+                                    label='City'
+                                    halfWidth
+                                />
+                                <br />                     
+                                <TextField
+                                    type="text"
+                                    onChange={props.handleChange}
+                                    value={props.values.street}
+                                    name='street'
+                                    label='Street'
+                                    halfWidth
+                                />
+                                <br />
+                                <TextField
+                                    type="text"
+                                    onChange={props.handleChange}
+                                    value={props.values.category}
+                                    name='category'
+                                    label='Category'
+                                    halfWidth
+                                />
+                                <br />
+                                <br />
+                            <button type="submit">Submit</button>
+                            </form>
+                        )}
+                    />
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={closeDialog} color="primary">
+                    Cancel
+                    </Button>
+                </DialogActions>
             </Dialog>
+            
         </div>
     )
 }
@@ -90,13 +117,8 @@ const mapStateToProps = state => ({
     isOpen: state.events.openDialog
 })
 
-const EventFormFunc = reduxForm({
-    form: 'new-event',
-})(EventForm);
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(EventFormFunc)
-
+export default connect(mapStateToProps, mapDispatchToProps)(EventForm);
 
 
 

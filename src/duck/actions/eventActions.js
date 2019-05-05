@@ -17,9 +17,15 @@ const closeDialog = () => ({
     type: types.CLOSE_DIALOG,
 })
 
+const openSingleEvent = (id) => ({
+    type: types.OPEN_SINGLE_EVENT,
+    payload: id
+})
+
 export default {
     reset,
     add,
     openDialog,
-    closeDialog
+    closeDialog,
+    openSingleEvent
 }

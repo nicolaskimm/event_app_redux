@@ -1,0 +1,45 @@
+$mainOrange: #FF8D23;
+$backgroundGrey: #F3F3F3;
+
+* {
+    box-sizing: border-box;
+}
+
+.singleEventInfo {
+    height: 80vh;
+    max-width: 880px;
+    background-color: $backgroundGrey;
+    padding: 50px;
+
+    .singleEventInfo-up {
+        display: flex;
+        flex-direction: row;
+
+        .singleEventInfo_left {
+            margin: 0;
+            width: 65%;
+            height: 15em;
+            padding-right: 15px;
+    
+            .singleEventInfo_left-photo {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    
+        .singleEventInfo_right {
+            width: 35%;
+        }
+    }
+
+    .singleEventInfo-up-description {
+        text-align: justify;
+        margin: 30px 0;
+    }
+
+    hr {
+        padding: 0;
+    }
+
+    
+}

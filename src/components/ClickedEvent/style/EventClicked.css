@@ -1,0 +1,47 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.singleEventInfo {
+  height: 80vh;
+  max-width: 880px;
+  background-color: #F3F3F3;
+  padding: 50px;
+}
+
+.singleEventInfo .singleEventInfo-up {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.singleEventInfo .singleEventInfo-up .singleEventInfo_left {
+  margin: 0;
+  width: 65%;
+  height: 15em;
+  padding-right: 15px;
+}
+
+.singleEventInfo .singleEventInfo-up .singleEventInfo_left .singleEventInfo_left-photo {
+  width: 100%;
+  height: 100%;
+}
+
+.singleEventInfo .singleEventInfo-up .singleEventInfo_right {
+  width: 35%;
+}
+
+.singleEventInfo .singleEventInfo-up-description {
+  text-align: justify;
+  margin: 30px 0;
+}
+
+.singleEventInfo hr {
+  padding: 0;
+}
+/*# sourceMappingURL=EventClicked.css.map */
